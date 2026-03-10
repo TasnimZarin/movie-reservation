@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: zarintasnim
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: moviedb
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://zarintasnim:password@db:5432/moviedb
+      SECRET_KEY: supersecretkey123
+      ALGORITHM: HS256
+      ACCESS_TOKEN_EXPIRE_MINUTES: 30
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
