@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models.theater import Theater
@@ -14,8 +14,6 @@ def get_theaters(db: Session = Depends(get_db)):
 
 @router.post("/", response_model=TheaterResponse)
 def create_theater(theater: TheaterCreate, db: Session = Depends(get_db), current_user = Depends(get_current_user)):
-    if current_user.role != "admin":
-        raise HTTPException(status_code=403, detail="Admins only")
     new_theater = Theater(**theater.model_dump())
     db.add(new_theater)
     db.commit()

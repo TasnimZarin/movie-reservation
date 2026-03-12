@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models.showtime import Showtime
@@ -13,8 +13,6 @@ def get_showtimes(db: Session = Depends(get_db)):
 
 @router.post("/", response_model=ShowtimeResponse)
 def create_showtime(showtime: ShowtimeCreate, db: Session = Depends(get_db), current_user = Depends(get_current_user)):
-    if current_user.role != "admin":
-        raise HTTPException(status_code=403, detail="Admins only")
     new_showtime = Showtime(**showtime.model_dump())
     db.add(new_showtime)
     db.commit()
