@@ -1,9 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.database import engine, Base
+from app.database import engine
+from app import models
 from app.routers import auth, movies, theaters, seats, showtimes, bookings
-
-Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Movie Reservation System")
 
