@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const API = 'http://127.0.0.1:8000';
+// const API = 'http://127.0.0.1:8000';
+const API = 'https://movie-reservation-po09.onrender.com';
 
 function Login(props) {
   const [email, setEmail] = useState('');
