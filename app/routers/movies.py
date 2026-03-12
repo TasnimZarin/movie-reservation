@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models.movie import Movie
@@ -13,8 +13,6 @@ def get_movies(db: Session = Depends(get_db)):
 
 @router.post("/", response_model=MovieResponse)
 def create_movie(movie: MovieCreate, db: Session = Depends(get_db), current_user = Depends(get_current_user)):
-    if current_user.role != "admin":
-        raise HTTPException(status_code=403, detail="Admins only")
     new_movie = Movie(**movie.model_dump())
     db.add(new_movie)
     db.commit()
