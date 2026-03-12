@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+# 🎬 Movie Reservation System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack movie reservation web application with JWT authentication, real-time seat booking, and PostgreSQL row-level locking to prevent double-bookings.
 
-## Available Scripts
+🔴 **Live Demo:** [movie-reservation-five.vercel.app](https://movie-reservation-five.vercel.app)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🛠 Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Frontend:** React, Axios, React Router  
+**Backend:** FastAPI, SQLAlchemy, Alembic  
+**Database:** PostgreSQL  
+**Auth:** JWT (python-jose), bcrypt  
+**Deployment:** Vercel (frontend), Render (backend)  
+**Testing:** pytest  
+**Containerization:** Docker, Docker Compose  
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## ✨ Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- User registration and login with JWT authentication
+- Browse movies with showtimes
+- Interactive seat map with real-time availability
+- Seat booking with PostgreSQL row-level locking (`SELECT FOR UPDATE`) to prevent concurrent double-bookings
+- View and cancel bookings
+- Fully deployed and accessible online
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🏗 Architecture
+```
+React Frontend (Vercel)
+        ↓
+FastAPI Backend (Render)
+        ↓
+PostgreSQL Database (Render)
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🚀 Running Locally
 
-### `npm run eject`
+### Backend
+```bash
+cd movie-reservation
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Frontend
+```bash
+npm install
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Docker
+```bash
+docker-compose up --build
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🧪 Tests
+```bash
+pytest tests/
+```
 
-## Learn More
+10 tests covering auth, movies, bookings, and seat locking.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📡 API Endpoints
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | /auth/register | Register user |
+| POST | /auth/login | Login and get JWT |
+| GET | /movies/ | List all movies |
+| GET | /showtimes/{id}/seats | Get seat availability |
+| POST | /bookings/ | Book a seat |
+| DELETE | /bookings/{id} | Cancel booking |
