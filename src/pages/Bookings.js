@@ -11,6 +11,7 @@ function Bookings() {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     axios.get(`${API}/bookings/me`, {
       headers: { Authorization: `Bearer ${token}` }
