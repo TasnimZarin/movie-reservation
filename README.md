@@ -2,7 +2,16 @@
 
 A full-stack movie reservation web application with JWT authentication, real-time seat booking, and PostgreSQL row-level locking to prevent double-bookings.
 
-🔴 **Live Demo:** [movie-reservation-five.vercel.app](https://movie-reservation-five.vercel.app)
+## 🎬 Live Demo
+
+🔗 **[https://movie-reservation-five.vercel.app](https://movie-reservation-five.vercel.app)**
+
+### Demo Credentials
+| Role | Email | Password |
+|---|---|---|
+| User | testdemo@seatlock.com | Test1234! |
+
+> **Note:** Free tier backend on Render may take 30–50 seconds to wake up on first visit.
 
 ---
 
