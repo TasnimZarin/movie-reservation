@@ -30,3 +30,5 @@ typing-inspection==0.4.2
 typing_extensions==4.15.0
 uvicorn==0.39.0
 python-multipart==0.0.20
+pytest==7.4.0
+httpx==0.24.1
